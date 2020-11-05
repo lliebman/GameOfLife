@@ -1,7 +1,7 @@
 public class Square {
         private final int x;
         private final int y;
-        private boolean alive;
+        private boolean isAlive;
 
         public Square(Square square) {
             this.x = square.x;
@@ -22,15 +22,15 @@ public class Square {
         }
 
         public void setAlive(){
-            alive = true;
+            isAlive = true;
         }
 
         public void setDead(){
-            alive = false;
+            isAlive = false;
         }
 
-        public boolean aliveStatus() {
-            return alive;
+        public boolean isAlive() {
+            return isAlive;
         }
 
 }
