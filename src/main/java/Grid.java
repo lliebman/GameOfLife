@@ -6,24 +6,40 @@ public class Grid {
     private List<Square> aliveSquares;
     private List<Square> deadSquares;
 
-    int width;
-    int height;
+    int WIDTH = 30;
+    int HEIGHT = 30;
 
+    /**
+     * for GardenView
+     */
     public List<Square> getAliveSquares() {
         return aliveSquares;
     }
 
+    /**
+     * for GardenView
+     */
     public List<Square> getDeadSquares() {
         return deadSquares;
     }
 
+    /**
+     * for the MouseKeyListener
+     */
+    public void toggleSquare(int x, int y) {
+        this.board[x][y].toggleSquare();
+    }
+
+    /**
+     * for the "next generation" button.
+     */
     public void nextGeneration() {
-        Square[][] newBoard = new Square[width][height];
+        Square[][] newBoard = new Square[WIDTH][HEIGHT];
         aliveSquares.clear();
         deadSquares.clear();
 
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
+        for (int y = 0; y < HEIGHT; y++) {
+            for (int x = 0; x < WIDTH; x++) {
                 Square square = board[x][y];
                 newBoard[x][y] = setSquare(square);
             }

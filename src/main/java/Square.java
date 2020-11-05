@@ -33,4 +33,12 @@ public class Square {
             return isAlive;
         }
 
+        public  void toggleSquare() {
+            if (this.isAlive) {
+                this.setDead();;
+            } else {
+                this.setAlive();;
+            }
+        }
+
 }
