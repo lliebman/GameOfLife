@@ -1,16 +1,30 @@
+import java.util.List;
+
 public class Grid {
 
-    public Square[][] board;
+    private Square[][] board;
+    private List<Square> aliveSquares;
+    private List<Square> deadSquares;
+
     int width;
     int height;
 
+    public List<Square> getAliveSquares() {
+        return aliveSquares;
+    }
+
+    public List<Square> getDeadSquares() {
+        return deadSquares;
+    }
+
     public void nextGeneration() {
-        Square[][] newBoard = null;
+        Square[][] newBoard = new Square[width][height];
+        aliveSquares.clear();
+        deadSquares.clear();
 
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 Square square = board[x][y];
-                assert false;
                 newBoard[x][y] = setSquare(square);
             }
         }
@@ -21,14 +35,17 @@ public class Grid {
     private Square setSquare(Square square) {
         int numAliveNeighbours = countAliveNeighbours(square);
 
-        if (square.isAlive()) { //current square is alive
+        if (square.isAlive()) { //if current square is alive
             if (numAliveNeighbours == 2 || numAliveNeighbours == 3) {
+                aliveSquares.add(square);
                 square.setAlive();
             } else {
+                deadSquares.add(square);
                 square.setDead();
             }
-        } else { //current square is dead
+        } else { //if current square is dead
             if (numAliveNeighbours == 3) {
+                aliveSquares.add(square);
                 square.setAlive();
             }
         }
@@ -48,10 +65,14 @@ public class Grid {
     }
 
     private Square[] getNeighbors(Square square) {
-        Square[] neighbors = new Square[8];
-
-
-        return neighbors;
+        return new Square[] {this.board[square.getX()][square.getY() - 1], //North
+                this.board[square.getX() + 1][square.getY() - 1], //NorthEast
+                this.board[square.getX() + 1][square.getY()], //East
+                this.board[square.getX() + 1][square.getY() + 1], //SouthEast
+                this.board[square.getX()][square.getY() + 1], //South
+                this.board[square.getX() - 1][square.getY() + 1], //SouthWest
+                this.board[square.getX() - 1][square.getY()], //West
+                this.board[square.getX() + 1][square.getY() - 1]}; //NorthWest
     }
 
 }
