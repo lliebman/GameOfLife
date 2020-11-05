@@ -44,7 +44,6 @@ public class Grid {
                 newBoard[x][y] = setSquare(square);
             }
         }
-
         this.board = newBoard;
     }
 
