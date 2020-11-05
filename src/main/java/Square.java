@@ -35,9 +35,9 @@ public class Square {
 
         public  void toggleSquare() {
             if (this.isAlive) {
-                this.setDead();;
+                this.setDead();
             } else {
-                this.setAlive();;
+                this.setAlive();
             }
         }
 
